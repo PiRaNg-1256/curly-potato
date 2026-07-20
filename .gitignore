@@ -1,0 +1,28 @@
+# --- Secrets (NEVER commit) ---
+.env
+*.pat
+*.token
+*credentials*
+
+# --- Reference material (external clones w/ own .git, large media) ---
+/videos/
+/ESP-32-Line-Follower/
+/IDLine/
+/PID-Line-Follower-Robot/
+/PID_line_follower_robot/
+
+# --- Firmware build artifacts ---
+.pio/
+build/
+*.bin
+*.elf
+*.hex
+*.o
+*.d
+
+# --- OS / editor cruft ---
+Thumbs.db
+Desktop.ini
+.DS_Store
+.vscode/
+.idea/
