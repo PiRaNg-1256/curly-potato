@@ -1,0 +1,26 @@
+section,class,function,MPN,LCSC,package,qty,unit_usd,source,notes
+JLC-SMD,MCU,main controller,ESP32-S3-WROOM-1-N16,verify@order,module,1,3.50,JLCPCB,NON-octal-PSRAM variant (N16/N8) so GPIO35-37 free; see PINMAP module note
+JLC-SMD,MUX,16:1 analog mux for line array,74HC4067PW,C155660,TSSOP-24,1,0.30,JLCPCB,common output -> MUX_ADC (ADC1); 4 select lines
+JLC-SMD,SENSOR_REFLECT,reflective analog line+wing sensor,ITR8307/S18/TR8,C224093,SMD-4,18,0.25,JLCPCB,16 line + 2 wing; integrated IR emitter+phototransistor; analog
+JLC-SMD,R_LOAD,phototransistor load resistors,10k 0603,C25804,0603,18,0.005,JLCPCB,one per sensor collector
+JLC-SMD,R_EMIT,IR emitter series resistors,100R 0603,C22775,0603,18,0.005,JLCPCB,R=(3.3-1.2)/0.02=105->100R; see POWER-BUDGET
+JLC-SMD,Q_EMIT,emitter bank switch,AO3400,C20917,SOT-23,1,0.05,JLCPCB,EMIT_EN gate; strobes 18 emitters for power + ambient subtraction
+JLC-SMD,DRIVER,per-motor H-bridge,DRV8874PWPR,C2831484,HTSSOP-16,2,1.60,JLCPCB,2.1A cont; IN/IN + PWM; 3.3V logic OK; current sense
+JLC-SMD,IMU,6-axis gyro+accel,ICM-42688-P,verify@order,LGA-14,1,3.50,JLCPCB,I2C1 bus (own controller); alt MPU-6500 C77906
+JLC-SMD,ENCODER,magnetic ABI wheel encoder,AS5047P-ATSM,verify@order,TSSOP-14,2,3.00,JLCPCB,on wheel-axle sub-PCB; ABI quadrature -> PCNT; needs diametric magnet
+JLC-SMD,BUCK,3.3V logic+sensor rail,MP1584EN,C10261,SOT-23-6,1,0.50,JLCPCB,2S in (6-8.4V) -> 3.3V 3A; +inductor+caps; alt TPS563201
+JLC-SMD,L_BUCK,buck inductor,22uH 3A,C408412,SMD,1,0.15,JLCPCB,per MP1584 datasheet
+JLC-SMD,MOSFET_RP,reverse-polarity protection,AO3401,C15127,SOT-23,1,0.06,JLCPCB,P-FET in VBAT path
+JLC-SMD,USB,programming + CDC telemetry,USB-C 16pin,C165948,SMD,1,0.30,JLCPCB,native USB on GPIO19/20
+JLC-SMD,BTN,boot + reset buttons,SMD tactile,C318884,SMD,2,0.03,JLCPCB,BOOT(GPIO0) + EN reset
+JLC-SMD,CAP_BULK,VMOTOR bulk decoupling,470uF low-ESR,C134914,SMD,1,0.30,JLCPCB,motor transient reservoir
+JLC-SMD,PASSIVES,decoupling caps + resistors + LEDs,assorted 0603,mixed,0603,60,0.01,JLCPCB,0.1uF per IC + status LEDs + dividers (incl VBAT_SENSE divider)
+IMPORT-MECH,MOTOR,drive motors,premium coreless (confirm listing),n/a,n/a,2,20.00,AliExpress,high-RPM coreless 2S-capable; RECORD no-load RPM + stall A for POWER-BUDGET
+IMPORT-MECH,MAGNET,encoder target magnets,diametric NdFeB 6x2.5mm,n/a,n/a,2,1.00,AliExpress,for AS5047P; mount on wheel axle end
+IMPORT-MECH,WHEEL,wheels + silicone tires,~32mm silicone,n/a,n/a,2,4.00,AliExpress,grippy; traction = cornering-speed limit
+IMPORT-MECH,CASTER,front low-friction contact,PTFE skid or micro ball,n/a,n/a,1,2.00,AliExpress,3rd contact point
+IMPORT-MECH,BATTERY,2S LiPo pack,2S 450mAh 45C+,n/a,n/a,1,10.00,AliExpress,+XT30; high C for coreless stall peaks
+IMPORT-MECH,OLED,UI display,SSD1306 0.96in I2C,n/a,n/a,1,3.00,AliExpress,I2C0 header
+IMPORT-MECH,ROT_ENC,menu input,EC11 rotary + push,n/a,n/a,1,1.00,AliExpress,THT via header/hand-solder; A/B/SW
+IMPORT-MECH,HARDWARE,standoffs/wire/connectors,misc,n/a,n/a,1,5.00,AliExpress,board-to-board ribbon for sensor nose
+RESERVED,ESC_HDR,future suction fan,3-pin header (not populated),n/a,n/a,1,0.00,n/a,ESC_PWM=GPIO42; power tap from VBAT; v1 unpopulated
