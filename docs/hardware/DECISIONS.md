@@ -45,6 +45,19 @@ Rejected: linear 3.3 V reg (heat/inefficiency at 2S), single unfiltered 3V3 rail
 - **IMPORT-MECH** rows → motors/wheels/LiPo/OLED/rotary/hardware from AliExpress (import OK).
 - **RESERVED** → footprint/header placed, not populated (suction fan, future).
 
+## D8 — Adopt IDLine RE patterns (config store + mode-C model)
+From decompiled IDLine (`docs/reference/IDLINE-RE-INSIGHTS.md`):
+- **Config/plan persistence: LittleFS files** (not NVS) — supersedes spec §8 NVS line.
+  Enables web upload/download of plans and larger structured data. NVS may still hold a
+  tiny boot-critical subset.
+- **Mode C = checkpoint-indexed path plan** (wing sensors count side-marks → per-segment
+  speed/PID/color/action), refined by encoder distance + IMU heading — supersedes the
+  "pure encoder odometry mapping" framing in spec §2/§9.
+- Reuse: 5 PID profiles + 5 calibration profiles; `threshold = high−(high−low)·sensi/100`;
+  web-over-WebSocket tuning.
+Rejected: NVS-only (can't serve file-based web plan editing); pure-odometry mapping
+(less robust than checkpoint segmentation).
+
 ## Cost roll-up (one robot)
 
 | Bucket | Est. USD |
